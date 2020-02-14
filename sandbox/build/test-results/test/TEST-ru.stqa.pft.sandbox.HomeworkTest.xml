@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.sandbox.HomeworkTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-14T20:53:42" hostname="users-MBP.attlocal.net" time="0.058">
+  <properties/>
+  <testcase name="testDistance" classname="ru.stqa.pft.sandbox.HomeworkTest" time="0.058"/>
+  <system-out><![CDATA[Расстояние между двумя точками: 34.438350715445125
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
