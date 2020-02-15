@@ -11,13 +11,12 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-//    compile group: 'junit', name: 'junit', version: '4.12'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-alpha-4'
-    compile 'org.testng:testng:6.9.6'
+test {
+    useTestNG()
 }
 
-tasks.withType(Test) {
-    scanForTestClasses = false
-    include "**/*Test.class" // whatever Ant pattern matches your test class files
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.0.0-alpha-4'
+    testImplementation 'org.testng:testng:6.14.3'
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.7.1'
 }

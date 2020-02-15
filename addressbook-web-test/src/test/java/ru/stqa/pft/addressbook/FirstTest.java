@@ -1,27 +1,34 @@
 package ru.stqa.pft.addressbook;
 
-import java.util.concurrent.TimeUnit;
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class UntitledTestCase {
+public class FirstTest {
   private WebDriver wd;
 
-
   @BeforeMethod(alwaysRun = true)
-  public void setUp() throws Exception {
-    wd = new FirefoxDriver();
-    wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+  public void setUp(){
+    WebDriverManager.chromedriver().version("80.0.3987.106").setup();
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--disable-gpu");
+    wd = new ChromeDriver(options);
+    wd.get("http://localhost:8080/addressbook/map.php?");
+    wd.findElement(By.id("LoginForm")).click();
+    wd.findElement(By.xpath("//input[@name='user']")).sendKeys("admin");
+    wd.findElement(By.xpath("//input[@name='pass']")).sendKeys("secret");
+    wd.findElement(By.xpath("//input[@type='submit']")).click();
   }
 
   @Test
-  public void testUntitledCase() throws Exception {
-    wd.get("http://localhost:8080/addressbook/map.php?");
-    wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.xpath("//form[@id='LoginForm']/label[2]")).click();
-    wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
+  public void testGroupCreation()throws Exception{
     wd.findElement(By.linkText("groups")).click();
     wd.findElement(By.name("new")).click();
     wd.findElement(By.name("group_name")).click();
@@ -41,7 +48,6 @@ public class UntitledTestCase {
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
     wd.quit();
-
   }
 
   private boolean isElementPresent(By by) {
@@ -62,5 +68,6 @@ public class UntitledTestCase {
     }
   }
 
-  }
 
+
+}
