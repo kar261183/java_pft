@@ -15,34 +15,93 @@ public class FirstTest {
   private WebDriver wd;
 
   @BeforeMethod(alwaysRun = true)
-  public void setUp(){
+  public void setUp() {
     WebDriverManager.chromedriver().version("80.0.3987.106").setup();
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-gpu");
     wd = new ChromeDriver(options);
+    login("admin", "secret");
+  }
+
+  private void login(String username, String password) {
     wd.get("http://localhost:8080/addressbook/map.php?");
     wd.findElement(By.id("LoginForm")).click();
-    wd.findElement(By.xpath("//input[@name='user']")).sendKeys("admin");
-    wd.findElement(By.xpath("//input[@name='pass']")).sendKeys("secret");
+    wd.findElement(By.xpath("//input[@name='user']")).sendKeys(username);
+    wd.findElement(By.xpath("//input[@name='pass']")).sendKeys(password);
     wd.findElement(By.xpath("//input[@type='submit']")).click();
   }
 
   @Test
-  public void testGroupCreation()throws Exception{
-    wd.findElement(By.linkText("groups")).click();
-    wd.findElement(By.name("new")).click();
+  public void testGroupCreation() throws Exception {
+    gotoGroup();
+    initGroupCreation();
+    fillGroupForm(new GroupData("test1", "test2", "test3"));
+    submitGroupCreation();
+    returngrouppage();
+  }
+  @Test
+  public void testNameCreation() throws Exception {
+    gotoName();
+    initNameCreation(new GroupNameData("Maria", "Maeva", "+79342837462", "yurt@gmail.com"));
+    submitNameCreation();
+    gotoHomePage();
+
+  }
+
+  private void gotoHomePage() {
+    wd.findElement(By.linkText("home")).click();
+  }
+
+  private void submitNameCreation() {
+    wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
+  }
+
+  private void initNameCreation(GroupNameData groupNameData) {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(groupNameData.getFirstname());
+    wd.findElement(By.name("lastname")).click();
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(groupNameData.getLastname());
+    wd.findElement(By.name("mobile")).click();
+    wd.findElement(By.name("mobile")).clear();
+    wd.findElement(By.name("mobile")).sendKeys(groupNameData.getMobile());
+    wd.findElement(By.name("email")).click();
+    wd.findElement(By.name("email")).clear();
+    wd.findElement(By.name("email")).sendKeys(groupNameData.getEmail());
+  }
+
+  private void gotoName() {
+    wd.findElement(By.linkText("add new")).click();
+  }
+
+
+  private void returngrouppage() {
+    wd.findElement(By.linkText("group page")).click();
+  }
+
+  private void submitGroupCreation() {
+    wd.findElement(By.name("submit")).click();
+  }
+
+  private void fillGroupForm(GroupData groupData) {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
-    wd.findElement(By.name("group_name")).sendKeys("test1");
+    wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
     wd.findElement(By.name("group_header")).click();
     wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys("test2");
+    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
     wd.findElement(By.name("group_footer")).click();
     wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys("test3");
-    wd.findElement(By.name("submit")).click();
-    wd.findElement(By.linkText("group page")).click();
-    wd.findElement(By.linkText("Logout")).click();
+    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+  }
+
+  private void initGroupCreation() {
+    wd.findElement(By.name("new")).click();
+  }
+
+  private void gotoGroup() {
+    wd.findElement(By.linkText("groups")).click();
   }
 
   @AfterMethod(alwaysRun = true)
@@ -67,7 +126,6 @@ public class FirstTest {
       return false;
     }
   }
-
 
 
 }
