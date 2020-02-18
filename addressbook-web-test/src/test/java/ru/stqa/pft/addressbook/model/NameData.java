@@ -3,13 +3,13 @@ package ru.stqa.pft.addressbook.model;
 public class NameData {
   private final String firstname;
   private final String lastname;
-  private final String mobile;
+  private final String home;
   private final String email;
 
-  public NameData(String firstname, String lastname, String mobile, String email) {
+  public NameData(String firstname, String lastname, String home, String email) {
     this.firstname = firstname;
     this.lastname = lastname;
-    this.mobile = mobile;
+    this.home = home;
     this.email = email;
   }
 
@@ -21,8 +21,8 @@ public class NameData {
     return lastname;
   }
 
-  public String getMobile() {
-    return mobile;
+  public String getHome() {
+    return home;
   }
 
   public String getEmail() {
