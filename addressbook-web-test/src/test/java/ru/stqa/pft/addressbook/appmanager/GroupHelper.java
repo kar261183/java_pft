@@ -4,15 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-public class GroupHelper  extends HelperBase {
+public class GroupHelper extends HelperBase {
 
-  public GroupHelper(WebDriver wd){
+  public GroupHelper(WebDriver wd) {
     super(wd);
   }
 
-
-  public void returnGroupPage() {
-    click(By.linkText("group page"));
+  public void returntoGroupPage() {
+    click(By.linkText("groups"));
   }
 
   public void submitGroupCreation() {
@@ -26,14 +25,14 @@ public class GroupHelper  extends HelperBase {
   }
 
   public void initGroupCreation() {
-    click(By.xpath("//input[@name='new'][2]"));
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroups() {
-    click(By.xpath("(//input[@name='delete'])[2]"));
+    click(By.name("delete"));
   }
 
-  public void selectGroup() {
+  public void selecGroup() {
     click(By.name("selected[]"));
   }
 }
