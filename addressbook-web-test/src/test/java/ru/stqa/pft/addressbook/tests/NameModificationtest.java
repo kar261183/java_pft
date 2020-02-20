@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
 
-public class NameModificationtest extends TestBaseName {
+public class NameModificationtest extends TestBase {
 
   @Test
   public void testNameModification(){

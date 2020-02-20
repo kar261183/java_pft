@@ -38,10 +38,11 @@ public class NameHelpers {
 
   public void deleteName() {
     clickN(By.xpath("//input[@value='Delete']"));
+    wd.switchTo().alert().accept();
   }
 
   public void chekboxName() {
-    clickN(By.id("32"));
+    clickN(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
   }
 
   public void homeName() {
@@ -56,4 +57,6 @@ public class NameHelpers {
   public void updateName() {
     clickN(By.xpath("//input[@name='update'][2]"));
   }
+
+
 }
