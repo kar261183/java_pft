@@ -51,7 +51,7 @@ public class NameHelpers {
 
 
   public void editName() {
-    clickN(By.xpath("//tr[4]//td[8]"));
+    clickN(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//a[contains(@href,'edit')]"));
   }
 
   public void updateName() {

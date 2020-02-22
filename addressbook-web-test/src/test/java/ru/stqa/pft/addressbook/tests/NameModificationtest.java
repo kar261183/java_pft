@@ -8,7 +8,6 @@ public class NameModificationtest extends TestBase {
   @Test
   public void testNameModification(){
   app.getNameHelpers().homeName();
-  app.getNameHelpers().chekboxName();
   app.getNameHelpers().editName();
   app.getNameHelpers().fillNameForm(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru"));
   app.getNameHelpers().updateName();
