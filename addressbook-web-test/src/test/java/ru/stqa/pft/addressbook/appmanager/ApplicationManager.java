@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
 
 public class ApplicationManager {
   WebDriver wd;
@@ -11,10 +13,20 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
+  private String browser;
+
+  public ApplicationManager(String browser) {
+    this.browser = browser;
+  }
 
   public void init() {
-    WebDriverManager.chromedriver().version("80.0.3987.106").setup();
-    wd = new ChromeDriver();
+    if (browser.equals(BrowserType.CHROME)) {
+      WebDriverManager.chromedriver().version("80.0.3987.106").setup();
+      wd = new ChromeDriver();
+    } else if (browser.equals(BrowserType.FIREFOX)){
+      WebDriverManager.firefoxdriver().setup();
+      wd = new FirefoxDriver();
+    }
     wd.get("http://localhost:8080/addressbook/edit.php");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);

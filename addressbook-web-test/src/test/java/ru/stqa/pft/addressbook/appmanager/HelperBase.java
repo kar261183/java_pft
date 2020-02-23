@@ -2,6 +2,8 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HelperBase {
   protected WebDriver wd;
@@ -10,15 +12,14 @@ public class HelperBase {
     this.wd = wd;
   }
 
-
-  protected void click(By locator) {
+  public void click(By locator) {
+    new WebDriverWait(wd, 3).until(ExpectedConditions.elementToBeClickable(locator));
     wd.findElement(locator).click();
   }
 
   protected void type(By locator, String text) {
-    click(locator);
+    new WebDriverWait(wd, 3).until(ExpectedConditions.elementToBeClickable(locator));
     wd.findElement(locator).clear();
     wd.findElement(locator).sendKeys(text);
   }
-
 }
