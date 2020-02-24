@@ -9,7 +9,7 @@ public class NameModificationtest extends TestBase {
   public void testNameModification(){
   app.getNameHelpers().homeName();
   app.getNameHelpers().editName();
-  app.getNameHelpers().fillNameForm(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru"));
+  app.getNameHelpers().fillNameForm(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", null), false);
   app.getNameHelpers().updateName();
   }
 }
