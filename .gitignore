@@ -13,3 +13,5 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 sandbox/src/test/java/ru/stqa/pft/sandbox/HomeworkTest.groovy
+addressbook-web-test/build/classes/java/test/ru/stqa/pft/addressbook/tests/TestBase.class
+*.class
