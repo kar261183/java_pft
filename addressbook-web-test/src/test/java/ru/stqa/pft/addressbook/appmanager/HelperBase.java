@@ -14,7 +14,7 @@ public class HelperBase {
   }
 
   public void click(By locator) {
-    new WebDriverWait(wd, 3).until(ExpectedConditions.elementToBeClickable(locator));
+    new WebDriverWait(wd, 15).until(ExpectedConditions.elementToBeClickable(locator));
     wd.findElement(locator).click();
   }
 

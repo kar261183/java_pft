@@ -21,7 +21,7 @@ public class NameHelpers extends HelperBase{
     type(By.name("home"), nameData.getHome());
     type(By.name("email"), nameData.getEmail());
 
-    if (creation){
+    if (creation) {
       new Select(wd.findElement(By.xpath("//select[@name='new_group']"))).selectByVisibleText(nameData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.xpath("//select[@name='new_group']")));
@@ -58,4 +58,14 @@ public class NameHelpers extends HelperBase{
   }
 
 
+  public void createName(NameData name) {
+    addNewName();
+    fillNameForm(name,true);
+    submitName();
+    homeName();
+  }
+
+  public boolean isThereAName() {
+    return isElementPresent(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
+  }
 }
