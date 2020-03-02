@@ -27,7 +27,7 @@ public class ApplicationManager {
       WebDriverManager.firefoxdriver().setup();
       wd = new FirefoxDriver();
     }
-    wd.get("http://localhost:8080/addressbook/edit.php");
+    wd.get("http://localhost:8080/addressbook/");
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
