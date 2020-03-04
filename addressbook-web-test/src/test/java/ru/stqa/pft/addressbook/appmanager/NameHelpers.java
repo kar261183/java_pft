@@ -2,9 +2,13 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NameData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NameHelpers extends HelperBase{
   public NameHelpers(WebDriver wd) {
@@ -73,4 +77,17 @@ public class NameHelpers extends HelperBase{
   public int getNameCount() {
     return wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]")).size();
   }
-}
+
+  public List<NameData> getNameList() {
+    List<NameData> names = new ArrayList<NameData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//input[@name='selected[]']"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      NameData name = new NameData(firstname, null, null, null, null);
+      names.add(name);
+    }
+    return names;
+  }
+  }
+
+
