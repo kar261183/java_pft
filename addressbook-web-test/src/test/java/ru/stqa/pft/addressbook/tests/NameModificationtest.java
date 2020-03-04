@@ -12,7 +12,7 @@ public class NameModificationtest extends TestBase {
     if (!app.getNameHelpers().isThereAName()) {
       app.getNameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
     }
-    app.getNameHelpers().editName();
+    app.getNameHelpers().editName(0);
     app.getNameHelpers().fillNameForm(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", null), false);
     app.getNameHelpers().updateName();
     int after = app.getNameHelpers().getNameCount();

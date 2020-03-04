@@ -12,7 +12,7 @@ public class NameDeletionTest extends TestBase {
     if (!app.getNameHelpers().isThereAName()) {
       app.getNameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
     }
-    app.getNameHelpers().chekboxName();
+    app.getNameHelpers().checkboxName(0);
     app.getNameHelpers().deleteName();
     int after = app.getNameHelpers().getNameCount();
     Assert.assertEquals(after, before - 1);
