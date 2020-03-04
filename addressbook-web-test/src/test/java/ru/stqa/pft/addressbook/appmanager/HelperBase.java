@@ -18,6 +18,10 @@ public class HelperBase {
     wd.findElement(locator).click();
   }
 
+  public void waitElementPresent(By locator, int seconds) {
+    new WebDriverWait(wd, seconds).until(ExpectedConditions.elementToBeClickable(locator));
+  }
+
   protected void type(By locator, String text) {
     new WebDriverWait(wd, 3).until(ExpectedConditions.elementToBeClickable(locator));
     click(locator);

@@ -35,12 +35,12 @@ public class NameHelpers extends HelperBase{
   public void deleteName() {
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
+    waitElementPresent(By.xpath("//*[contains(text(),'Number of res')]"), 10);
   }
 
   public void chekboxName() throws InterruptedException {
     click(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
   }
-
   public void homeName() {
     if (isElementPresent(By.id("maintable"))) {
       return;
@@ -55,6 +55,7 @@ public class NameHelpers extends HelperBase{
 
   public void updateName() {
     click(By.xpath("//input[@name='update'][2]"));
+    waitElementPresent(By.xpath("//*[contains(text(),'Number of res')]"), 35);
   }
 
 
@@ -67,5 +68,9 @@ public class NameHelpers extends HelperBase{
 
   public boolean isThereAName() {
     return isElementPresent(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
+  }
+
+  public int getNameCount() {
+    return wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]")).size();
   }
 }
