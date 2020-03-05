@@ -88,6 +88,7 @@ public class NameHelpers extends HelperBase{
     }
     return names;
   }
-  }
+
+}
 
 

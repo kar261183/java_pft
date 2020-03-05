@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class NameModificationtest extends TestBase {
@@ -15,9 +16,14 @@ public class NameModificationtest extends TestBase {
     }
     List<NameData> before = app.getNameHelpers().getNameList();
     app.getNameHelpers().editName(0);
-    app.getNameHelpers().fillNameForm(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", null), false);
+    NameData name = new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", null);
+    app.getNameHelpers().fillNameForm(name, false);
     app.getNameHelpers().updateName();
     List<NameData> after = app.getNameHelpers().getNameList();
     Assert.assertEquals(after.size(), before.size());
+
+    before.remove(0);
+    before.add(name);
+    Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
   }
 }
