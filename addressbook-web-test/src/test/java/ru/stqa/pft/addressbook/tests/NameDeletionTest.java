@@ -18,6 +18,9 @@ public class NameDeletionTest extends TestBase {
     app.getNameHelpers().deleteName();
     List<NameData> after = app.getNameHelpers().getNameList();
     Assert.assertEquals(after.size(), before.size() - 1);
+
+    before.remove(0);
+    Assert.assertEquals(before, after);
+    }
   }
 
-}
