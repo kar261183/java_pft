@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.NameCreationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-06T07:08:36" hostname="users-MBP.attlocal.net" time="2.058">
+  <properties/>
+  <testcase name="testNameCreation" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="2.058"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/user/.m2/repository/webdriver/chromedriver/mac64/80.0.3987.106/chromedriver
+Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 39220
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+Mar 05, 2020 11:08:35 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

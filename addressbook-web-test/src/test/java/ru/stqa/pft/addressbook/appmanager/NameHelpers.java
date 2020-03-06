@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NameData;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class NameHelpers extends HelperBase{
   public NameHelpers(WebDriver wd) {
@@ -80,10 +82,12 @@ public class NameHelpers extends HelperBase{
 
   public List<NameData> getNameList() {
     List<NameData> names = new ArrayList<NameData>();
-    List<WebElement> elements = wd.findElements(By.xpath("//input[@name='selected[]']"));
-    for (WebElement element : elements) {
-      String firstname = element.getText();
-      NameData name = new NameData(firstname, null, null, null, null);
+    List<WebElement> elements = wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]"));
+    for (int i = 1; i < elements.size() + 1; i++) {
+      String xpath = "//table/tbody/tr[contains(@name,'entry')][" + i + "]";
+      String firstname = wd.findElement(By.xpath(xpath + "//td[3]")).getText();
+      int id = Integer.parseInt(wd.findElement(By.xpath(xpath + "//td[1]/input")).getAttribute("id"));
+      NameData name = new NameData(id, firstname, null, null, null, null);
       names.add(name);
     }
     return names;

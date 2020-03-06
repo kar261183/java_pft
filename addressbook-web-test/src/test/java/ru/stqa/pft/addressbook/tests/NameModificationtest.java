@@ -16,7 +16,7 @@ public class NameModificationtest extends TestBase {
     }
     List<NameData> before = app.getNameHelpers().getNameList();
     app.getNameHelpers().editName(0);
-    NameData name = new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", null);
+    NameData name = new NameData(before.get(0).getId(), "Olga", "Eremenko", "89457653453", "ert@mail.ru", null);
     app.getNameHelpers().fillNameForm(name, false);
     app.getNameHelpers().updateName();
     List<NameData> after = app.getNameHelpers().getNameList();
