@@ -11,7 +11,7 @@ public class NameData {
   private String group;
 
   public NameData(String firstname, String lastname, String home, String email, String group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.lastname = lastname;
     this.home = home;
@@ -62,13 +62,12 @@ public class NameData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     NameData nameData = (NameData) o;
-    return id == nameData.id &&
-            Objects.equals(firstname, nameData.firstname);
+    return Objects.equals(firstname, nameData.firstname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname);
+    return Objects.hash(firstname);
   }
 
   @Override
