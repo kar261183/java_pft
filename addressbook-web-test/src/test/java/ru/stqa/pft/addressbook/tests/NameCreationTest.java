@@ -11,7 +11,7 @@ import java.util.List;
 public class NameCreationTest extends TestBase {
 
 
-  @Test
+  @Test(enabled = false)
   public void testNameCreation() throws Exception {
     List<NameData> before = app.getNameHelpers().getNameList();
     NameData name = new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1");

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class NameModificationtest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testNameModification() {
     if (!app.getNameHelpers().isThereAName()) {
       app.getNameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));

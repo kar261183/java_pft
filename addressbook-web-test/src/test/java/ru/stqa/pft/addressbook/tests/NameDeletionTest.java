@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NameDeletionTest extends TestBase {
 
-  @Test
+  @Test(enabled = false)
   public void testNameDeletion() throws Exception {
     if (!app.getNameHelpers().isThereAName()) {
       app.getNameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
