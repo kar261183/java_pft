@@ -10,13 +10,13 @@ public class NameDeletionTest extends TestBase {
 
   @Test(enabled = false)
   public void testNameDeletion() throws Exception {
-    if (!app.getNameHelpers().isThereAName()) {
-      app.getNameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
+    if (!app.nameHelpers().isThereAName()) {
+      app.nameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
     }
-    List<NameData> before = app.getNameHelpers().getNameList();
-    app.getNameHelpers().checkboxName(0);
-    app.getNameHelpers().deleteName();
-    List<NameData> after = app.getNameHelpers().getNameList();
+    List<NameData> before = app.nameHelpers().getNameList();
+    app.nameHelpers().checkboxName(0);
+    app.nameHelpers().deleteName();
+    List<NameData> after = app.nameHelpers().getNameList();
     Assert.assertEquals(after.size(), before.size() - 1);
 
     before.remove(0);

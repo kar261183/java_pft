@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class NameCreationTest extends TestBase {
@@ -13,10 +12,10 @@ public class NameCreationTest extends TestBase {
 
   @Test(enabled = false)
   public void testNameCreation() throws Exception {
-    List<NameData> before = app.getNameHelpers().getNameList();
+    List<NameData> before = app.nameHelpers().getNameList();
     NameData name = new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1");
-    app.getNameHelpers().createName(name);
-    List<NameData> after = app.getNameHelpers().getNameList();
+    app.nameHelpers().createName(name);
+    List<NameData> after = app.nameHelpers().getNameList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(name);

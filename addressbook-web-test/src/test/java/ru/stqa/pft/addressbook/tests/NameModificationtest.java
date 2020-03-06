@@ -4,24 +4,22 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
 
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class NameModificationtest extends TestBase {
 
   @Test(enabled = false)
   public void testNameModification() {
-    if (!app.getNameHelpers().isThereAName()) {
-      app.getNameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
+    if (!app.nameHelpers().isThereAName()) {
+      app.nameHelpers().createName(new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1"));
     }
-    List<NameData> before = app.getNameHelpers().getNameList();
-    app.getNameHelpers().editName(0);
+    List<NameData> before = app.nameHelpers().getNameList();
+    app.nameHelpers().editName(0);
     NameData name = new NameData(before.get(0).getId(), "Olga", "Eremenko", "89457653453", "ert@mail.ru", null);
-    app.getNameHelpers().fillNameForm(name, false);
-    app.getNameHelpers().updateName();
-    List<NameData> after = app.getNameHelpers().getNameList();
+    app.nameHelpers().fillNameForm(name, false);
+    app.nameHelpers().updateName();
+    List<NameData> after = app.nameHelpers().getNameList();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(0);

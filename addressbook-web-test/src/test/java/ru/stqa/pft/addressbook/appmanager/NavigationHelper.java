@@ -9,7 +9,7 @@ public class NavigationHelper extends HelperBase {
     super(wd);
   }
 
-  public void gotoGroupPage() {
+  public void groupPage() {
     if (isElementPresent(By.xpath("//h1[contains(text(),'Groups')]"))
             && wd.findElement(By.xpath("//h1[contains(text(),'Groups')]")).getText().equals("Groups")
             && isElementPresent(By.xpath("//body/div[@id='container']/div[@id='content']/form/input[1]"))) {
