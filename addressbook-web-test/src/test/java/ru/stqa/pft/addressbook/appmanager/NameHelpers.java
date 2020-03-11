@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NameData;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class NameHelpers extends HelperBase{
   public NameHelpers(WebDriver wd) {
@@ -76,18 +74,15 @@ public class NameHelpers extends HelperBase{
     return isElementPresent(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
   }
 
-  public int getNameCount() {
-    return wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]")).size();
-  }
-
   public List<NameData> getNameList() {
     List<NameData> names = new ArrayList<NameData>();
     List<WebElement> elements = wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]"));
-    for (int i = 1; i < elements.size() + 1; i++) {
-      String xpath = "//table/tbody/tr[contains(@name,'entry')][" + i + "]";
-      String firstname = wd.findElement(By.xpath(xpath + "//td[3]")).getText();
-      int id = Integer.parseInt(wd.findElement(By.xpath(xpath + "//td[1]/input")).getAttribute("id"));
-      NameData name = new NameData(id, firstname, null, null, null, null);
+    for (int i = 0; i < elements.size(); i++) {
+      String trElement = "//table/tbody/tr[contains(@name,'entry')][" + (i + 1) + "]";
+      String firstName = wd.findElement(By.xpath(trElement + "//td[3]")).getText();
+      String lastName = wd.findElement(By.xpath(trElement + "//td[2]")).getText();
+      int id = Integer.parseInt(wd.findElement(By.xpath(trElement + "//td[1]/input")).getAttribute("id"));
+      NameData name = new NameData(id, firstName, lastName, null, null, null);
       names.add(name);
     }
     return names;
