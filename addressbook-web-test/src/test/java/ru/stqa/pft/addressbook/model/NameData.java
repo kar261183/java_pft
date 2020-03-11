@@ -62,12 +62,14 @@ public class NameData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     NameData nameData = (NameData) o;
-    return Objects.equals(firstname, nameData.firstname);
+    return id == nameData.id &&
+            Objects.equals(firstname, nameData.firstname) &&
+            Objects.equals(lastname, nameData.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname);
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
@@ -75,6 +77,7 @@ public class NameData {
     return "NameData{" +
             "id=" + id +
             ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
             '}';
   }
 }
