@@ -36,13 +36,13 @@ public class NameHelpers extends HelperBase{
     click(By.linkText("add new"));
   }
 
-  public void deleteName() {
+  public void delete() {
     click(By.xpath("//input[@value='Delete']"));
     wd.switchTo().alert().accept();
     waitElementPresent(By.xpath("//*[contains(text(),'Number of res')]"), 10);
   }
 
-  public void checkboxName(int index) throws InterruptedException {
+  public void checkbox(int index) throws InterruptedException {
     wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input")).get(index).click();
   }
   public void homeName() {
@@ -63,18 +63,29 @@ public class NameHelpers extends HelperBase{
   }
 
 
-  public void createName(NameData name) {
+  public void create(NameData name) {
     addNewName();
     fillNameForm(name,true);
     submitName();
     homeName();
   }
 
+  public void modify(int index, NameData name) {
+    editName(index);
+    fillNameForm(name, false);
+    updateName();
+  }
+
   public boolean isThereAName() {
     return isElementPresent(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
   }
 
-  public List<NameData> getNameList() {
+  public void delete(int index) throws InterruptedException {
+    checkbox(index);
+    delete();
+  }
+
+  public List<NameData> list() {
     List<NameData> names = new ArrayList<NameData>();
     List<WebElement> elements = wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]"));
     for (int i = 0; i < elements.size(); i++) {
@@ -82,8 +93,7 @@ public class NameHelpers extends HelperBase{
       String firstName = wd.findElement(By.xpath(trElement + "//td[3]")).getText();
       String lastName = wd.findElement(By.xpath(trElement + "//td[2]")).getText();
       int id = Integer.parseInt(wd.findElement(By.xpath(trElement + "//td[1]/input")).getAttribute("id"));
-      NameData name = new NameData(id, firstName, lastName, null, null, null);
-      names.add(name);
+      names.add(new NameData().withId(id).withFirstname(firstName).withLastname(lastName));
     }
     return names;
   }

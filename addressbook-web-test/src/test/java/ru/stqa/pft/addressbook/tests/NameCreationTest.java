@@ -12,10 +12,11 @@ public class NameCreationTest extends TestBase {
 
   @Test
   public void testNameCreation() throws Exception {
-    List<NameData> before = app.nameHelpers().getNameList();
-    NameData name = new NameData("Olga", "Eremenko", "89457653453", "ert@mail.ru", "test1");
-    app.nameHelpers().createName(name);
-    List<NameData> after = app.nameHelpers().getNameList();
+    List<NameData> before = app.name().list();
+    NameData name = new NameData()
+            .withFirstname("Olga").withLastname("Eremenko").withHome("89457653453").withEmail("ert@mail.ru").withGroup("test1");
+    app.name().create(name);
+    List<NameData> after = app.name().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 
     before.add(name);

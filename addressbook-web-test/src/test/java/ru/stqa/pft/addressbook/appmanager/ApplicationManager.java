@@ -47,7 +47,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public NameHelpers nameHelpers() {
+  public NameHelpers name() {
     return nameHelpers;
   }
 

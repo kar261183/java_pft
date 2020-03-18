@@ -3,37 +3,46 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class NameData {
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String home;
-  private final String email;
+  private int id = Integer.MAX_VALUE;
+  private String firstname;
+  private String lastname;
+  private String home;
+  private String email;
   private String group;
 
-  public NameData(String firstname, String lastname, String home, String email, String group) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.home = home;
-    this.email = email;
-    this.group = group;
-  }
-
-  public NameData(int id, String firstname, String lastname, String home, String email, String group) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.home = home;
-    this.email = email;
-    this.group = group;
-  }
 
   public int getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public NameData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public NameData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public NameData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public NameData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public NameData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public NameData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   public String getFirstname() {
@@ -64,12 +73,15 @@ public class NameData {
     NameData nameData = (NameData) o;
     return id == nameData.id &&
             Objects.equals(firstname, nameData.firstname) &&
-            Objects.equals(lastname, nameData.lastname);
+            Objects.equals(lastname, nameData.lastname) &&
+            Objects.equals(home, nameData.home) &&
+            Objects.equals(email, nameData.email) &&
+            Objects.equals(group, nameData.group);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, lastname, home, email, group);
   }
 
   @Override
@@ -78,6 +90,9 @@ public class NameData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", home='" + home + '\'' +
+            ", email='" + email + '\'' +
+            ", group='" + group + '\'' +
             '}';
   }
 }
