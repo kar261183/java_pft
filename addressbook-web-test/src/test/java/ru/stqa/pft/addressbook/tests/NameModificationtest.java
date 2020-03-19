@@ -1,11 +1,13 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
+import ru.stqa.pft.addressbook.model.Names;
 
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class NameModificationtest extends TestBase {
 
@@ -19,17 +21,14 @@ public class NameModificationtest extends TestBase {
 
   @Test
   public void testNameModification() {
-    Set<NameData> before = app.name().all();
+    Names before = app.name().all();
     NameData modifiedName = before.iterator().next();
     NameData name = new NameData()
             .withId(modifiedName.getId()).withFirstname("Olga").withLastname("Eremenko");
     app.name().modify(name);
-    Set<NameData> after = app.name().all();
-    Assert.assertEquals(after.size(), before.size());
-
-    before.remove(modifiedName);
-    before.add(name);
-    Assert.assertEquals(before, after);
+    Names after = app.name().all();
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedName).withAdded(name)));
   }
 
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NameData;
+import ru.stqa.pft.addressbook.model.Names;
 
 import java.util.HashSet;
 import java.util.List;
@@ -88,8 +89,8 @@ public class NameHelpers extends HelperBase {
     delete();
   }
 
-  public Set<NameData> all() {
-    Set<NameData> names = new HashSet<NameData>();
+  public Names all() {
+    Names names = new Names();
     List<WebElement> elements = wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]"));
     for (int i = 0; i < elements.size(); i++) {
       String trElement = "//table/tbody/tr[contains(@name,'entry')][" + (i + 1) + "]";

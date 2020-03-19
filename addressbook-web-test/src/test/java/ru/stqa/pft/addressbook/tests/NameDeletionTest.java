@@ -1,11 +1,18 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
+import ru.stqa.pft.addressbook.model.Names;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class NameDeletionTest extends TestBase {
 
@@ -19,14 +26,12 @@ public class NameDeletionTest extends TestBase {
 
   @Test
   public void testNameDeletion() throws Exception {
-    Set<NameData> before = app.name().all();
+    Names before = app.name().all();
     NameData deletedName = before.iterator().next();
     app.name().delete(deletedName);
-    Set<NameData> after = app.name().all();
-    Assert.assertEquals(after.size(), before.size() - 1);
-
-    before.remove(deletedName);
-    Assert.assertEquals(before, after);
+    Names after = app.name().all();
+    assertEquals(after.size(), before.size() - 1);
+    assertThat(after, equalTo(before.without(deletedName)));
     }
 
 }
