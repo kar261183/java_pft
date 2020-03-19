@@ -7,10 +7,11 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NameData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class NameHelpers extends HelperBase{
+public class NameHelpers extends HelperBase {
   public NameHelpers(WebDriver wd) {
     super(wd);
   }
@@ -45,6 +46,11 @@ public class NameHelpers extends HelperBase{
   public void checkbox(int index) throws InterruptedException {
     wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input")).get(index).click();
   }
+
+  public void checkboxById(int id) throws InterruptedException {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
+
   public void homeName() {
     if (isElementPresent(By.id("maintable"))) {
       return;
@@ -52,10 +58,17 @@ public class NameHelpers extends HelperBase{
     click(By.linkText("home"));
   }
 
+  private void editNameById(int id) {
+    wd.findElement(By.xpath("//img[@alt='Edit']")).click();
 
-  public void editName(int index) {
-    wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//a[contains(@href,'edit')]")).get(index).click();
   }
+
+  public void modify(NameData name) {
+    editNameById(name.getId());
+    fillNameForm(name, false);
+    updateName();
+  }
+
 
   public void updateName() {
     click(By.xpath("//input[@name='update'][2]"));
@@ -65,28 +78,18 @@ public class NameHelpers extends HelperBase{
 
   public void create(NameData name) {
     addNewName();
-    fillNameForm(name,true);
+    fillNameForm(name, true);
     submitName();
     homeName();
   }
 
-  public void modify(int index, NameData name) {
-    editName(index);
-    fillNameForm(name, false);
-    updateName();
-  }
-
-  public boolean isThereAName() {
-    return isElementPresent(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input"));
-  }
-
-  public void delete(int index) throws InterruptedException {
-    checkbox(index);
+  public void delete(NameData name) throws InterruptedException {
+    checkboxById(name.getId());
     delete();
   }
 
-  public List<NameData> list() {
-    List<NameData> names = new ArrayList<NameData>();
+  public Set<NameData> all() {
+    Set<NameData> names = new HashSet<NameData>();
     List<WebElement> elements = wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')]"));
     for (int i = 0; i < elements.size(); i++) {
       String trElement = "//table/tbody/tr[contains(@name,'entry')][" + (i + 1) + "]";
@@ -99,5 +102,6 @@ public class NameHelpers extends HelperBase{
   }
 
 }
+
 
 

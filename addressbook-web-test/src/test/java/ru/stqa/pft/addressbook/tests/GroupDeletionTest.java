@@ -19,7 +19,7 @@ public class GroupDeletionTest extends TestBase {
     }
   }
 
-  @Test(enabled = false)
+  @Test
   public void testGroupDeletion() throws Exception {
     Groups before = app.group().all();
     GroupData deletedGroup = before.iterator().next();

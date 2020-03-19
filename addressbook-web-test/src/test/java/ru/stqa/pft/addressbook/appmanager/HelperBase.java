@@ -23,7 +23,7 @@ public class HelperBase {
   }
 
   protected void type(By locator, String text) {
-    new WebDriverWait(wd, 3).until(ExpectedConditions.elementToBeClickable(locator));
+    new WebDriverWait(wd, 3). until(ExpectedConditions.elementToBeClickable(locator));
     click(locator);
     if (text != null){
       String existingText = wd.findElement(locator).getAttribute("value");

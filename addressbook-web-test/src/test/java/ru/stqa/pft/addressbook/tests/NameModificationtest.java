@@ -5,14 +5,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class NameModificationtest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
-    if (app.name().list().size()==0) {
+    if (app.name().all().size()==0) {
       app.name().create(new NameData()
               .withFirstname("Olga").withLastname("Eremenko").withHome("89457653453").withEmail("ert@mail.ru").withGroup("test1"));
     }
@@ -20,19 +19,16 @@ public class NameModificationtest extends TestBase {
 
   @Test
   public void testNameModification() {
-    List<NameData> before = app.name().list();
-    int index = 0;
+    Set<NameData> before = app.name().all();
+    NameData modifiedName = before.iterator().next();
     NameData name = new NameData()
-            .withId(before.get(index).getId()).withFirstname("Olga").withLastname("Eremenko");
-    app.name().modify(index, name);
-    List<NameData> after = app.name().list();
+            .withId(modifiedName.getId()).withFirstname("Olga").withLastname("Eremenko");
+    app.name().modify(name);
+    Set<NameData> after = app.name().all();
     Assert.assertEquals(after.size(), before.size());
 
-    before.remove(index);
+    before.remove(modifiedName);
     before.add(name);
-    Comparator<? super NameData> byId = (n1,n2) -> Integer.compare(n1.getId(), n2.getId());
-    before.sort(byId);
-    after.sort(byId);
     Assert.assertEquals(before, after);
   }
 

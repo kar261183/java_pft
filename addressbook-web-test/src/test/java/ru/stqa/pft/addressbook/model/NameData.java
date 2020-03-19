@@ -73,15 +73,12 @@ public class NameData {
     NameData nameData = (NameData) o;
     return id == nameData.id &&
             Objects.equals(firstname, nameData.firstname) &&
-            Objects.equals(lastname, nameData.lastname) &&
-            Objects.equals(home, nameData.home) &&
-            Objects.equals(email, nameData.email) &&
-            Objects.equals(group, nameData.group);
+            Objects.equals(lastname, nameData.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, home, email, group);
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
@@ -90,9 +87,6 @@ public class NameData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
-            ", home='" + home + '\'' +
-            ", email='" + email + '\'' +
-            ", group='" + group + '\'' +
             '}';
   }
 }
