@@ -9,6 +9,8 @@ public class NameData {
   private String home;
   private String email;
   private String group;
+  private String mobilePhone;
+  private String workPhone;
 
 
   public int getId() {
@@ -45,6 +47,16 @@ public class NameData {
     return this;
   }
 
+  public NameData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public NameData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
   public String getFirstname() {
     return firstname;
   }
@@ -64,6 +76,14 @@ public class NameData {
 
   public String getGroup() {
     return group;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
   }
 
   @Override
@@ -87,6 +107,12 @@ public class NameData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
+            ", home='" + home + '\'' +
+            ", email='" + email + '\'' +
+            ", group='" + group + '\'' +
             '}';
   }
+
+
+
 }

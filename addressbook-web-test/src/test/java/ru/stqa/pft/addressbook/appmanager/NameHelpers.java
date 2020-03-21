@@ -8,9 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.NameData;
 import ru.stqa.pft.addressbook.model.Names;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class NameHelpers extends HelperBase {
   public NameHelpers(WebDriver wd) {
@@ -18,6 +16,7 @@ public class NameHelpers extends HelperBase {
   }
 
   public void submitName() {
+
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
@@ -44,10 +43,6 @@ public class NameHelpers extends HelperBase {
     waitElementPresent(By.xpath("//*[contains(text(),'Number of res')]"), 10);
   }
 
-  public void checkbox(int index) throws InterruptedException {
-    wd.findElements(By.xpath("//table/tbody/tr[contains(@name,'entry')][1]//input")).get(index).click();
-  }
-
   public void checkboxById(int id) throws InterruptedException {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
@@ -62,6 +57,10 @@ public class NameHelpers extends HelperBase {
   private void editNameById(int id) {
     wd.findElement(By.xpath("//img[@alt='Edit']")).click();
 
+  }
+
+  public void goToHomePage(){
+    click(By.xpath("//a[contains(text(),'home')]"));
   }
 
   public void modify(NameData name) {
@@ -100,6 +99,25 @@ public class NameHelpers extends HelperBase {
       names.add(new NameData().withId(id).withFirstname(firstName).withLastname(lastName));
     }
     return names;
+  }
+
+  public NameData infoFromEditForm(NameData name) {
+    initNameModificationByTd(name.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new NameData().withId(name.getId()).withFirstname(firstname).withLastname(lastname)
+            .withHome(home).withMobilePhone(mobile).withWorkPhone(work);
+  }
+
+  private void initNameModificationByTd(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
   }
 
 }
