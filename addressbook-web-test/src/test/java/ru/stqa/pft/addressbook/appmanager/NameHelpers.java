@@ -20,10 +20,13 @@ public class NameHelpers extends HelperBase {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
+
   public void fillNameForm(NameData nameData, boolean creation) {
     type(By.name("firstname"), nameData.getFirstname());
     type(By.name("lastname"), nameData.getLastname());
-    type(By.name("home"), nameData.getHome());
+    type(By.xpath(link_homePhone), nameData.getHomePhone());
+    type(By.xpath(link_mobilePhone), nameData.getMobilePhone());
+    type(By.xpath(link_workPhone), nameData.getWorkPhone());
     type(By.name("email"), nameData.getEmail());
 
     if (creation) {
@@ -59,10 +62,6 @@ public class NameHelpers extends HelperBase {
 
   }
 
-  public void goToHomePage(){
-    click(By.xpath("//a[contains(text(),'home')]"));
-  }
-
   public void modify(NameData name) {
     editNameById(name.getId());
     fillNameForm(name, false);
@@ -81,6 +80,7 @@ public class NameHelpers extends HelperBase {
     fillNameForm(name, true);
     submitName();
     homeName();
+
   }
 
   public void delete(NameData name) throws InterruptedException {
@@ -95,22 +95,39 @@ public class NameHelpers extends HelperBase {
       String trElement = "//table/tbody/tr[contains(@name,'entry')][" + (i + 1) + "]";
       String firstName = wd.findElement(By.xpath(trElement + "//td[3]")).getText();
       String lastName = wd.findElement(By.xpath(trElement + "//td[2]")).getText();
+      String[] phones = wd.findElement(By.xpath(trElement + "//td[6]")).getText().split("\n");
       int id = Integer.parseInt(wd.findElement(By.xpath(trElement + "//td[1]/input")).getAttribute("id"));
-      names.add(new NameData().withId(id).withFirstname(firstName).withLastname(lastName));
+      names.add(new NameData()
+              .setId(id)
+              .setFirstname(firstName)
+              .setLastname(lastName)
+              .setHomePhone(phones[0])
+              .setMobilePhone(phones[1])
+              .setWorkPhone(phones[2]));
     }
     return names;
   }
+
+  String link_homePhone = "//input[@name='home']";
+  String link_mobilePhone = "//input[@name='mobile']";
+  String link_workPhone = "//input[@name='work']";
 
   public NameData infoFromEditForm(NameData name) {
     initNameModificationByTd(name.getId());
     String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
-    String home = wd.findElement(By.name("home")).getAttribute("value");
-    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
-    String work = wd.findElement(By.name("work")).getAttribute("value");
+    String homePhone = wd.findElement(By.xpath(link_homePhone)).getAttribute("value");
+    String mobilePhone = wd.findElement(By.xpath(link_mobilePhone)).getAttribute("value");
+    String workPhone = wd.findElement(By.xpath(link_workPhone)).getAttribute("value");
+
     wd.navigate().back();
-    return new NameData().withId(name.getId()).withFirstname(firstname).withLastname(lastname)
-            .withHome(home).withMobilePhone(mobile).withWorkPhone(work);
+    return new NameData()
+            .setId(name.getId())
+            .setFirstname(firstname)
+            .setLastname(lastname)
+            .setHomePhone(homePhone)
+            .setMobilePhone(mobilePhone)
+            .setWorkPhone(workPhone);
   }
 
   private void initNameModificationByTd(int id) {

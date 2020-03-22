@@ -6,7 +6,7 @@ public class NameData {
   private int id = Integer.MAX_VALUE;
   private String firstname;
   private String lastname;
-  private String home;
+  private String homePhone;
   private String email;
   private String group;
   private String mobilePhone;
@@ -17,42 +17,42 @@ public class NameData {
     return id;
   }
 
-  public NameData withId(int id) {
+  public NameData setId(int id) {
     this.id = id;
     return this;
   }
 
-  public NameData withFirstname(String firstname) {
+  public NameData setFirstname(String firstname) {
     this.firstname = firstname;
     return this;
   }
 
-  public NameData withLastname(String lastname) {
+  public NameData setLastname(String lastname) {
     this.lastname = lastname;
     return this;
   }
 
-  public NameData withHome(String home) {
-    this.home = home;
+  public NameData setHomePhone(String home) {
+    this.homePhone = home;
     return this;
   }
 
-  public NameData withEmail(String email) {
+  public NameData setEmail(String email) {
     this.email = email;
     return this;
   }
 
-  public NameData withGroup(String group) {
+  public NameData setGroup(String group) {
     this.group = group;
     return this;
   }
 
-  public NameData withMobilePhone(String mobilePhone) {
+  public NameData setMobilePhone(String mobilePhone) {
     this.mobilePhone = mobilePhone;
     return this;
   }
 
-  public NameData withWorkPhone(String workPhone) {
+  public NameData setWorkPhone(String workPhone) {
     this.workPhone = workPhone;
     return this;
   }
@@ -66,8 +66,8 @@ public class NameData {
     return lastname;
   }
 
-  public String getHome() {
-    return home;
+  public String getHomePhone() {
+    return homePhone;
   }
 
   public String getEmail() {
@@ -93,12 +93,15 @@ public class NameData {
     NameData nameData = (NameData) o;
     return id == nameData.id &&
             Objects.equals(firstname, nameData.firstname) &&
-            Objects.equals(lastname, nameData.lastname);
+            Objects.equals(lastname, nameData.lastname) &&
+            Objects.equals(homePhone, nameData.homePhone) &&
+            Objects.equals(mobilePhone, nameData.mobilePhone) &&
+            Objects.equals(workPhone, nameData.workPhone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, lastname, homePhone, mobilePhone, workPhone);
   }
 
   @Override
@@ -107,12 +110,11 @@ public class NameData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
-            ", home='" + home + '\'' +
-            ", email='" + email + '\'' +
-            ", group='" + group + '\'' +
+            ", home='" + homePhone + '\'' +
+            ", mobilePhone='" + mobilePhone + '\'' +
+            ", workPhone='" + workPhone + '\'' +
             '}';
   }
-
 
 
 }

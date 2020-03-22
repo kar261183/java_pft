@@ -1,14 +1,9 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.NameData;
 import ru.stqa.pft.addressbook.model.Names;
-
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,7 +15,7 @@ public class NameDeletionTest extends TestBase {
   public void ensurePreconditions(){
     if (app.name().all().size()==0) {
       app.name().create(new NameData()
-              .withFirstname("Olga").withLastname("Eremenko").withHome("89457653453").withEmail("ert@mail.ru").withGroup("test1"));
+              .setFirstname("Olga").setLastname("Eremenko").setHomePhone("89457653453").setEmail("ert@mail.ru").setGroup("test1"));
     }
   }
 

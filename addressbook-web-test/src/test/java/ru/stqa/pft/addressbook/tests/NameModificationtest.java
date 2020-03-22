@@ -15,7 +15,7 @@ public class NameModificationtest extends TestBase {
   public void ensurePreconditions(){
     if (app.name().all().size()==0) {
       app.name().create(new NameData()
-              .withFirstname("Olga").withLastname("Eremenko").withHome("89457653453").withEmail("ert@mail.ru").withGroup("test1"));
+              .setFirstname("Olga").setLastname("Eremenko").setHomePhone("89457653453").setEmail("ert@mail.ru").setGroup("test1"));
     }
   }
 
@@ -24,7 +24,11 @@ public class NameModificationtest extends TestBase {
     Names before = app.name().all();
     NameData modifiedName = before.iterator().next();
     NameData name = new NameData()
-            .withId(modifiedName.getId()).withFirstname("Olga").withLastname("Eremenko");
+            .setId(modifiedName.getId())
+            .setFirstname("Olga").setLastname("Eremenko")
+            .setHomePhone("89457653453")
+            .setMobilePhone("9999")
+            .setWorkPhone("8888");
     app.name().modify(name);
     Names after = app.name().all();
     assertEquals(after.size(), before.size());

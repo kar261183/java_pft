@@ -14,13 +14,19 @@ public class NameCreationTest extends TestBase {
   public void testNameCreation() throws Exception {
     Names before = app.name().all();
     NameData name = new NameData()
-            .withFirstname("Olga").withLastname("Eremenko").withHome("89457653453").withEmail("ert@mail.ru").withGroup("test1");
+            .setFirstname("Olga")
+            .setLastname("Eremenko")
+            .setHomePhone("89457653453")
+            .setMobilePhone("9999")
+            .setWorkPhone("8888")
+            .setEmail("ert@mail.ru")
+            .setGroup("test1");
     app.name().create(name);
     Names after = app.name().all();
     assertThat(after.size(), equalTo(before.size() + 1));
 
     assertThat(after, equalTo(before.withAdded(
-            name.withId(after.stream().mapToInt((n) -> n.getId()).max().getAsInt()))));
+            name.setId(after.stream().mapToInt((n) -> n.getId()).max().getAsInt()))));
   }
 
 }
