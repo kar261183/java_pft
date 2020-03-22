@@ -15,7 +15,11 @@ public class NameDeletionTest extends TestBase {
   public void ensurePreconditions(){
     if (app.name().all().size()==0) {
       app.name().create(new NameData()
-              .setFirstname("Olga").setLastname("Eremenko").setHomePhone("89457653453").setEmail("ert@mail.ru").setGroup("test1"));
+              .setFirstname("Olga")
+              .setLastname("Eremenko")
+              .setHomePhone("89457653453")
+              .setEmail("ert@mail.ru")
+              .setGroup("test1"));
     }
   }
 

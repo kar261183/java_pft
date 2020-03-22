@@ -7,16 +7,16 @@ public class NameData {
   private String firstname;
   private String lastname;
   private String homePhone;
-  private String email;
   private String group;
   private String mobilePhone;
   private String workPhone;
   private String allPhones;
+  private String address;
+  private String email;
+  private String email2;
+  private String email3;
+  private String allEmail;
 
-
-  public int getId() {
-    return id;
-  }
 
   public NameData setId(int id) {
     this.id = id;
@@ -43,6 +43,21 @@ public class NameData {
     return this;
   }
 
+  public NameData setEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public NameData setEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public NameData setAllEmail(String allEmail) {
+    this.allEmail = allEmail;
+    return this;
+  }
+
   public NameData setGroup(String group) {
     this.group = group;
     return this;
@@ -63,6 +78,16 @@ public class NameData {
     return this;
   }
 
+  public NameData setAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+
+  public int getId() {
+    return id;
+  }
+
   public String getFirstname() {
     return firstname;
   }
@@ -78,6 +103,18 @@ public class NameData {
 
   public String getEmail() {
     return email;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getAllEmail() {
+    return allEmail;
   }
 
   public String getGroup() {
@@ -96,6 +133,11 @@ public class NameData {
     return allPhones;
   }
 
+  public String getAddress() {
+    return address;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -103,15 +145,12 @@ public class NameData {
     NameData nameData = (NameData) o;
     return id == nameData.id &&
             Objects.equals(firstname, nameData.firstname) &&
-            Objects.equals(lastname, nameData.lastname) &&
-            Objects.equals(homePhone, nameData.homePhone) &&
-            Objects.equals(mobilePhone, nameData.mobilePhone) &&
-            Objects.equals(workPhone, nameData.workPhone);
+            Objects.equals(lastname, nameData.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, homePhone, mobilePhone, workPhone);
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
@@ -120,12 +159,7 @@ public class NameData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
-            ", home='" + homePhone + '\'' +
-            ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
             '}';
   }
-
-
 
 }

@@ -27,7 +27,10 @@ public class NameHelpers extends HelperBase {
     type(By.xpath(link_homePhone), nameData.getHomePhone());
     type(By.xpath(link_mobilePhone), nameData.getMobilePhone());
     type(By.xpath(link_workPhone), nameData.getWorkPhone());
-    type(By.name("email"), nameData.getEmail());
+    type(By.xpath(link_email), nameData.getEmail());
+    type(By.xpath(link_email2), nameData.getEmail2());
+    type(By.xpath(link_email3), nameData.getEmail3());
+
 
     if (creation) {
       new Select(wd.findElement(By.xpath("//select[@name='new_group']"))).selectByVisibleText(nameData.getGroup());
@@ -96,12 +99,18 @@ public class NameHelpers extends HelperBase {
       String firstName = wd.findElement(By.xpath(trElement + "//td[3]")).getText();
       String lastName = wd.findElement(By.xpath(trElement + "//td[2]")).getText();
       String  allPhones = wd.findElement(By.xpath(trElement + "//td[6]")).getText();
+      String address = wd.findElement(By.xpath(trElement + "//td[4]")).getText();
+      String allEmail = wd.findElement(By.xpath(trElement + "//td[5]")).getText();
       int id = Integer.parseInt(wd.findElement(By.xpath(trElement + "//td[1]/input")).getAttribute("id"));
       names.add(new NameData()
               .setId(id)
               .setFirstname(firstName)
               .setLastname(lastName)
-              .setAllPhones(allPhones));
+              .setAllPhones(allPhones)
+              .setAddress(address)
+              .setAllEmail(allEmail));
+
+
     }
     return names;
   }
@@ -109,6 +118,9 @@ public class NameHelpers extends HelperBase {
   String link_homePhone = "//input[@name='home']";
   String link_mobilePhone = "//input[@name='mobile']";
   String link_workPhone = "//input[@name='work']";
+  String link_email = "//input[@name='email']";
+  String link_email2 = "//input[@name='email2']";
+  String link_email3 = "//input[@name='email3']";
 
   public NameData infoFromEditForm(NameData name) {
     initNameModificationByTd(name.getId());
@@ -117,6 +129,10 @@ public class NameHelpers extends HelperBase {
     String homePhone = wd.findElement(By.xpath(link_homePhone)).getAttribute("value");
     String mobilePhone = wd.findElement(By.xpath(link_mobilePhone)).getAttribute("value");
     String workPhone = wd.findElement(By.xpath(link_workPhone)).getAttribute("value");
+    String address = wd.findElement(By.xpath("//textarea[@name='address']")).getAttribute("value");
+    String email = wd.findElement(By.xpath(link_email)).getAttribute("value");
+    String email2 = wd.findElement(By.xpath(link_email2)).getAttribute("value");
+    String email3 = wd.findElement(By.xpath(link_email3)).getAttribute("value");
 
     wd.navigate().back();
     return new NameData()
@@ -125,7 +141,12 @@ public class NameHelpers extends HelperBase {
             .setLastname(lastname)
             .setHomePhone(homePhone)
             .setMobilePhone(mobilePhone)
-            .setWorkPhone(workPhone);
+            .setWorkPhone(workPhone)
+            .setAddress(address)
+            .setEmail(email)
+            .setEmail2(email2)
+            .setEmail3(email3);
+
   }
 
   private void initNameModificationByTd(int id) {

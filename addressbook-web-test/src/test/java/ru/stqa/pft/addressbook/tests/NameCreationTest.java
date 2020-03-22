@@ -16,11 +16,15 @@ public class NameCreationTest extends TestBase {
     NameData name = new NameData()
             .setFirstname("Olga")
             .setLastname("Eremenko")
-            .setHomePhone("89457653453")
-            .setMobilePhone("9999")
-            .setWorkPhone("8888")
             .setEmail("ert@mail.ru")
-            .setGroup("test1");
+            .setEmail2("fgtr@gmail.ru")
+            .setEmail3("lflfrpr@mail.ru")
+            .setGroup("test1")
+            .setAddress("Ostrovskogo")
+            .setHomePhone("44444444")
+            .setMobilePhone("55555555")
+            .setWorkPhone("949494949");
+
     app.name().create(name);
     Names after = app.name().all();
     assertThat(after.size(), equalTo(before.size() + 1));
