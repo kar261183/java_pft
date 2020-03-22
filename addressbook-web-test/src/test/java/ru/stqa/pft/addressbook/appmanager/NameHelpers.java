@@ -95,15 +95,13 @@ public class NameHelpers extends HelperBase {
       String trElement = "//table/tbody/tr[contains(@name,'entry')][" + (i + 1) + "]";
       String firstName = wd.findElement(By.xpath(trElement + "//td[3]")).getText();
       String lastName = wd.findElement(By.xpath(trElement + "//td[2]")).getText();
-      String[] phones = wd.findElement(By.xpath(trElement + "//td[6]")).getText().split("\n");
+      String  allPhones = wd.findElement(By.xpath(trElement + "//td[6]")).getText();
       int id = Integer.parseInt(wd.findElement(By.xpath(trElement + "//td[1]/input")).getAttribute("id"));
       names.add(new NameData()
               .setId(id)
               .setFirstname(firstName)
               .setLastname(lastName)
-              .setHomePhone(phones[0])
-              .setMobilePhone(phones[1])
-              .setWorkPhone(phones[2]));
+              .setAllPhones(allPhones));
     }
     return names;
   }

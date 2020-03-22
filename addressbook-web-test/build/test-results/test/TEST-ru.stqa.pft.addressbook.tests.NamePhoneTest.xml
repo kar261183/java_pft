@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.NamePhoneTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-22T11:02:19" hostname="users-MacBook-Pro.local" time="0.745">
+<testsuite name="ru.stqa.pft.addressbook.tests.NamePhoneTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-22T11:58:21" hostname="users-MacBook-Pro.local" time="0.758">
   <properties/>
-  <testcase name="testNamePhones" classname="ru.stqa.pft.addressbook.tests.NamePhoneTest" time="0.745"/>
+  <testcase name="testNamePhones" classname="ru.stqa.pft.addressbook.tests.NamePhoneTest" time="0.758"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

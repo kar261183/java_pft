@@ -11,6 +11,7 @@ public class NameData {
   private String group;
   private String mobilePhone;
   private String workPhone;
+  private String allPhones;
 
 
   public int getId() {
@@ -57,6 +58,11 @@ public class NameData {
     return this;
   }
 
+  public NameData setAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
   public String getFirstname() {
     return firstname;
   }
@@ -84,6 +90,10 @@ public class NameData {
 
   public String getWorkPhone() {
     return workPhone;
+  }
+
+  public String getAllPhones(){
+    return allPhones;
   }
 
   @Override
@@ -115,6 +125,7 @@ public class NameData {
             ", workPhone='" + workPhone + '\'' +
             '}';
   }
+
 
 
 }
