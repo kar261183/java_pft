@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class NameData {
@@ -17,6 +18,16 @@ public class NameData {
   private String email3;
   private String allEmail;
 
+  public File getPhoto() {
+    return photo;
+  }
+
+  public NameData setPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
+  private File photo;
 
   public NameData setId(int id) {
     this.id = id;

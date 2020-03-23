@@ -24,6 +24,7 @@ public class NameHelpers extends HelperBase {
   public void fillNameForm(NameData nameData, boolean creation) {
     type(By.name("firstname"), nameData.getFirstname());
     type(By.name("lastname"), nameData.getLastname());
+    attach(By.xpath("//input[@name='photo']"), nameData.getPhoto());
     type(By.xpath(link_homePhone), nameData.getHomePhone());
     type(By.xpath(link_mobilePhone), nameData.getMobilePhone());
     type(By.xpath(link_workPhone), nameData.getWorkPhone());
@@ -33,8 +34,10 @@ public class NameHelpers extends HelperBase {
 
 
     if (creation) {
-      new Select(wd.findElement(By.xpath("//select[@name='new_group']"))).selectByVisibleText(nameData.getGroup());
-    } else {
+      if (nameData.getGroup() != null){
+        new Select(wd.findElement(By.xpath("//select[@name='new_group']"))).selectByVisibleText(nameData.getGroup());
+      }
+      } else {
       Assert.assertFalse(isElementPresent(By.xpath("//select[@name='new_group']")));
     }
   }

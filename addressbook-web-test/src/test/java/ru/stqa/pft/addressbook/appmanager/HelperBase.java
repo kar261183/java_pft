@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+
 public class HelperBase {
   protected WebDriver wd;
 
@@ -32,7 +34,16 @@ public class HelperBase {
         wd.findElement(locator).sendKeys(text);
       }
     }
+
   }
+
+  protected void attach(By locator, File file) {
+    new WebDriverWait(wd, 3). until(ExpectedConditions.elementToBeClickable(locator));
+    if (file != null){
+        wd.findElement(locator).sendKeys(file.getAbsolutePath());
+      }
+    }
+
 
   protected boolean isElementPresent(By locator) {
     try {
