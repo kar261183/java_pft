@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.NameCreationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-23T17:03:24" hostname="users-MacBook-Pro.local" time="67.662">
-  <properties/>
-  <testcase name="testNameCreation" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="67.662"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
