@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.NameCreationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2020-04-04T17:27:36" hostname="users-MacBook-Pro.local" time="64.196">
+  <properties/>
+  <testcase name="testNameCreation[0](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="14.645"/>
+  <testcase name="testNameCreation[1](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="11.789"/>
+  <testcase name="testNameCreation[2](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="12.712"/>
+  <testcase name="testNameCreation[3](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="12.598"/>
+  <testcase name="testNameCreation[4](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="12.449"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Security framework of XStream not initialized, XStream is probably vulnerable.
+]]></system-err>
+</testsuite>
