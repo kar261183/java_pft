@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.NameCreationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-04-07T08:29:06" hostname="users-MacBook-Pro.local" time="7.757">
+  <properties/>
+  <testcase name="testNameCreation[0](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="4.154"/>
+  <testcase name="testNameCreation[1](NameData{id=0, firstname='firstName 1', lastname='lastName 1'})" classname="ru.stqa.pft.addressbook.tests.NameCreationTest" time="3.602"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Security framework of XStream not initialized, XStream is probably vulnerable.
+]]></system-err>
+</testsuite>
